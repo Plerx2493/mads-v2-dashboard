@@ -1,7 +1,8 @@
-﻿import type { User } from '../types/User';
+﻿import type { User } from '../types/user';
 import { PUBLIC_API_URL } from '$env/static/public';
+import { userStore } from '$lib/index';
 
-export async function getUser(): Promise<User | null> {
+export async function fetchUser(): Promise<boolean> {
   try {
     const res = await fetch(`${PUBLIC_API_URL}/api/user/@me`, {
       method: 'GET',
@@ -9,14 +10,17 @@ export async function getUser(): Promise<User | null> {
     });
 
     if (!res.ok) {
-      return null;
+      return false;
     }
 
     const data: User = await res.json();
+
+    userStore.set(data);
+
     console.log(data);
-    return data;
+    return true;
   } catch (error) {
     console.log(error);
-    return null;
+    return true;
   }
 }
