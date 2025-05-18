@@ -2,15 +2,15 @@
 	import { fade } from 'svelte/transition';
 	import { getUser } from '$lib/getUser';
 	import { onMount } from 'svelte';
+	import { redirectToLogin } from '$lib/redirectToLogin';
 	import { userStore } from '$lib';
 
-	function redirectToLogin() {
-		window.location.href = `https://devenv.plerx.dev/api/user/login?ReturnUrl=` + window.location.href;
-	}
-
-	let isLoaded = false;
+	let isLoaded = $state(false);
 
 	onMount(async () => {
+		if ($userStore !== null)
+			return;
+
 		let user = await getUser();
 
 		if (user === null)
@@ -29,7 +29,7 @@
 <main in:fade>
 	{#if isLoaded}
 		<h1>Hello, {$userStore?.username}</h1>
-		{:else }
+	{:else }
 		<h1>Loading...</h1>
 	{/if}
 </main>
