@@ -28,9 +28,15 @@
 
 <main in:fade>
 	{#if isLoaded}
-		<h3>Hello, {$userStore?.username}</h3>
+		<h1>Hello, {$userStore?.username}</h1>
+		{:else }
+		<h1>Loading...</h1>
 	{/if}
 </main>
 
 <style>
+	h1 {
+		text-align: center;
+		margin-top: 20vh;
+	}
 </style>

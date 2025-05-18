@@ -1,8 +1,9 @@
 ﻿import type { User } from '../types/User';
+import { PUBLIC_API_URL } from '$env/static/public';
 
 export async function getUser() : Promise<User | null> {
 	try {
-		const res = await fetch('https://devenv.plerx.dev/api/user/@me', {
+		const res = await fetch(`https://${PUBLIC_API_URL}/api/user/@me`, {
 			method: 'GET',
 			credentials: 'include',
 		});
