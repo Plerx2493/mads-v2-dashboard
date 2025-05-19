@@ -17,7 +17,6 @@ export async function fetchUser(): Promise<boolean> {
 
     userStore.set(data);
 
-    console.log(data);
     return true;
   } catch (error) {
     console.log(error);
