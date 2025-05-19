@@ -139,10 +139,13 @@
     padding: 2rem;
   }
   .servers-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
     margin-top: 1rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .servers-list-skeleton {
     display: flex;
