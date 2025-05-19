@@ -88,25 +88,36 @@
 
 <style>
   .banner {
-    width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
     background: linear-gradient(90deg, var(--color-primary) 60%, var(--color-secondary) 100%);
     color: white;
     padding: 2rem 0;
     margin-bottom: 2rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    overflow-x: hidden;
   }
   .banner-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 1000px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
+    gap: 2rem;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+  }
+  .greeting {
+    flex: 1 1 200px;
+    min-width: 0;
   }
   .greeting h1 {
     margin: 0;
     font-size: 2.5rem;
     font-weight: 700;
+    word-break: break-word;
   }
   .greeting p {
     margin: 0.5rem 0 0 0;
@@ -119,6 +130,8 @@
     margin: 0 2rem;
     border: 3px solid white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    order: 2;
   }
   .logout {
     background: var(--color-danger, #e74c3c);
@@ -129,6 +142,11 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.2s;
+    order: 3;
+    flex-basis: 100%;
+    margin-top: 1rem;
+    align-self: flex-end;
+    max-width: 200px;
   }
   .logout:hover {
     background: #c0392b;
@@ -208,6 +226,31 @@
   @keyframes shimmer {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
+  }
+  @media (max-width: 700px) {
+    .banner-content {
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .avatar {
+      width: 4rem;
+      height: 4rem;
+      margin: 0 0 1rem auto;
+    }
+    .greeting h1 {
+      font-size: 1.6rem;
+    }
+    .greeting p {
+      font-size: 1rem;
+    }
+    .logout {
+      width: 100%;
+      padding: 0.75rem 0;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      align-self: flex-end;
+      max-width: none;
+    }
   }
 </style>
 
