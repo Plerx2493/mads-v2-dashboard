@@ -166,27 +166,29 @@
     margin-right: auto;
   }
   .servers-list-skeleton {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
     margin-top: 1rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .server-card-skeleton {
     background: var(--color-surface, #23272f);
     border-radius: 1rem;
-    padding: 2rem 1.5rem;
-    min-width: 250px;
-    max-width: 320px;
-    flex: 1 1 250px;
+    padding: 1.5rem 2rem;
+    min-width: 220px;
+    flex: 1 1 220px;
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
   }
   .skeleton-avatar {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.75rem;
     background: #333a44;
   }
   .skeleton-avatar.large {
