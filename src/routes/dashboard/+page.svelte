@@ -55,9 +55,16 @@
       </div>
       <div class="overview">
         {#if isLoadingServers}
-          <div class="servers-list-loading" in:fade out:fade>
-            <div class="spinner"></div>
-            <span>Loading servers...</span>
+          <div class="servers-list-skeleton">
+            {#each Array(3) as _, i}
+              <div class="server-card-skeleton" key={i}>
+                <div class="skeleton-avatar shimmer"></div>
+                <div class="skeleton-lines">
+                  <div class="skeleton-line shimmer" style="width: 60%"></div>
+                  <div class="skeleton-line shimmer" style="width: 40%"></div>
+                </div>
+              </div>
+            {/each}
           </div>
         {:else if $serverStore.length > 0}
           <div class="servers-list">
@@ -71,9 +78,10 @@
       </div>
     </div>
   {:else}
-    <div class="user-loading centered" in:fade={{ duration: 350 }} out:fade={{ duration: 200 }}>
-      <div class="spinner"></div>
-      <span>Loading user...</span>
+    <div class="user-banner-skeleton centered">
+      <div class="skeleton-avatar shimmer large"></div>
+      <div class="skeleton-line shimmer" style="width: 200px; height: 2.5rem; margin-top: 1.5rem;"></div>
+      <div class="skeleton-line shimmer" style="width: 150px; height: 1.2rem; margin-top: 0.5rem;"></div>
     </div>
   {/if}
 </main>
@@ -136,38 +144,67 @@
     gap: 2rem;
     margin-top: 1rem;
   }
-  .servers-list-loading, .user-loading {
+  .servers-list-skeleton {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .server-card-skeleton {
+    background: var(--color-surface, #23272f);
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    min-width: 250px;
+    max-width: 320px;
+    flex: 1 1 250px;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    font-size: 1.2rem;
-    color: var(--color-on-surface, #f5f6fa);
-    min-height: 4rem;
+    gap: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
-  .user-loading.centered {
+  .skeleton-avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: #333a44;
+  }
+  .skeleton-avatar.large {
+    width: 6rem;
+    height: 6rem;
+  }
+  .skeleton-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .skeleton-line {
+    height: 1.2rem;
+    border-radius: 0.5rem;
+    background: #333a44;
+  }
+  .user-banner-skeleton.centered {
     min-height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
-    color: var(--color-on-surface, #f5f6fa);
     animation: fadein 0.3s;
   }
-  .spinner {
-    width: 2rem;
-    height: 2rem;
-    border: 3px solid #444;
-    border-top: 3px solid var(--color-primary, #6cf);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+  .shimmer {
+    position: relative;
+    overflow: hidden;
   }
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    animation: shimmer 1.2s infinite;
   }
-  @keyframes fadein {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
   }
 </style>
+
