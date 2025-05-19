@@ -5,14 +5,15 @@
 
 <div class="server-card {server.isBotInGuild ? 'online' : 'offline'}">
   {#if server.iconUrl}
-    <img src={server.iconUrl} alt="{server.name} icon" class="server-icon" />
+
+    <img src={server.iconUrl.replaceAll(".gif", ".png")} alt="{server.name} icon" class="server-icon" />
   {:else}
     <div class="server-icon placeholder">{server.name.charAt(0)}</div>
   {/if}
   <div class="server-info">
     <h3>{server.name}</h3>
     {#if server.isBotInGuild}
-      <a class="server-action-btn" href={`/dashboard/${server.id}`}>Open Dashboard</a>
+      <a class="server-action-btn" href={`/dashboard/${server.id}`}>Dashboard</a>
     {:else}
       <a class="server-action-btn add-bot" href={`/dashboard/add-bot/${server.id}`}>Add Bot</a>
     {/if}

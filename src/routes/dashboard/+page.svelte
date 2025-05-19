@@ -56,8 +56,8 @@
       <div class="overview">
         {#if isLoadingServers}
           <div class="servers-list-skeleton">
-            {#each Array(3) as _, i}
-              <div class="server-card-skeleton" key={i}>
+            {#each [1,2,3] as i (i)}
+              <div class="server-card-skeleton">
                 <div class="skeleton-avatar shimmer"></div>
                 <div class="skeleton-lines">
                   <div class="skeleton-line shimmer" style="width: 60%"></div>
