@@ -31,7 +31,7 @@
         let user = await fetchUser();
         if (!user) redirectToLogin();
       } catch {
-        userLoadError = "We can reach our backend. This should be a temporary issue. Please try again later.";
+        userLoadError = "We can not reach our backend. This should be a temporary issue. Please try again later.";
       } finally {
         isLoadingUser = false;
       }
@@ -41,7 +41,7 @@
       try {
         await fetchServers();
       } catch {
-        serverLoadError = "We can reach our backend. This should be a temporary issue. Please try again later.";
+        serverLoadError = "We can not reach our backend. This should be a temporary issue. Please try again later.";
       }
     }
     isLoadingServers = false;
