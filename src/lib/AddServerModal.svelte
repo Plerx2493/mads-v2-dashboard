@@ -11,7 +11,7 @@
   let isProcessing: boolean = $state(false);
 
   // Get servers where bot is NOT active
-  const availableServers = $derived($serverStore.filter(server => !server.isBotInGuild));
+  const availableServers = $derived($serverStore.filter((server) => !server.isBotInGuild));
 
   function handleTabChange(tab: 'select' | 'invite') {
     activeTab = tab;
@@ -26,15 +26,15 @@
 
   async function handleAddFromSelection() {
     if (!selectedServerId) return;
-    
+
     isProcessing = true;
     try {
       // TODO: Replace with actual API call to add bot to server
       console.log('Adding bot to server:', selectedServerId);
-      
+
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Navigate to the server page
       goto(`/dashboard/add-bot/${selectedServerId}`);
       onClose();
@@ -47,18 +47,18 @@
 
   async function handleAddFromInvite() {
     if (!inviteLink.trim()) return;
-    
+
     isProcessing = true;
     try {
       // TODO: Replace with actual API call to process invite link
       console.log('Processing invite link:', inviteLink);
-      
+
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Mock response - in real implementation, this would come from the API
       const mockServerId = 'invite-server-123';
-      
+
       // Navigate to add bot page for the invite server
       goto(`/dashboard/add-bot/${mockServerId}`);
       onClose();
@@ -84,8 +84,8 @@
 
 {#if isOpen}
   <!-- Modal backdrop -->
-  <div 
-    class="modal-backdrop" 
+  <div
+    class="modal-backdrop"
     on:click={handleBackdropClick}
     on:keydown={handleKeydown}
     role="dialog"
@@ -97,19 +97,21 @@
         <h2 id="modal-title">Add Server</h2>
         <button class="close-btn" on:click={onClose} aria-label="Close modal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
           </svg>
         </button>
       </div>
 
       <div class="modal-tabs">
-        <button 
+        <button
           class="tab-btn {activeTab === 'select' ? 'active' : ''}"
           on:click={() => handleTabChange('select')}
         >
           Select Server
         </button>
-        <button 
+        <button
           class="tab-btn {activeTab === 'invite' ? 'active' : ''}"
           on:click={() => handleTabChange('invite')}
         >
@@ -121,7 +123,7 @@
         {#if activeTab === 'select'}
           <div class="tab-content">
             <p class="tab-description">Choose from your servers where the bot isn't active yet:</p>
-            
+
             {#if availableServers.length > 0}
               <div class="server-selection">
                 {#each availableServers as server (server.id)}
@@ -131,9 +133,9 @@
                   >
                     <div class="server-icon-container">
                       {#if server.iconUrl}
-                        <img 
-                          src={server.iconUrl.replaceAll('.gif', '.png')} 
-                          alt="{server.name} icon" 
+                        <img
+                          src={server.iconUrl.replaceAll('.gif', '.png')}
+                          alt="{server.name} icon"
                           class="server-icon"
                         />
                       {:else}
@@ -143,31 +145,36 @@
                     <div class="server-details">
                       <span class="server-name">{server.name}</span>
                       <span class="server-members">
-                        {server.approximateMemberCount ? `${server.approximateMemberCount.toLocaleString()} members` : 'Members unknown'}
+                        {server.approximateMemberCount
+                          ? `${server.approximateMemberCount.toLocaleString()} members`
+                          : 'Members unknown'}
                       </span>
                     </div>
                     {#if selectedServerId === server.id}
                       <div class="selected-indicator">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                          <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                          <path
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          />
                         </svg>
                       </div>
                     {/if}
                   </button>
                 {/each}
               </div>
-              
             {:else}
               <div class="empty-state">
                 <p>All your servers already have the bot active!</p>
-                <p class="empty-subtitle">Try the invite link option to add the bot to a new server.</p>
+                <p class="empty-subtitle">
+                  Try the invite link option to add the bot to a new server.
+                </p>
               </div>
             {/if}
           </div>
         {:else}
           <div class="tab-content">
             <p class="tab-description">Paste a Discord server invite link to add the bot:</p>
-            
+
             <div class="invite-input-group">
               <input
                 type="text"
@@ -176,7 +183,6 @@
                 class="invite-input"
               />
             </div>
-            
           </div>
         {/if}
       </div>
@@ -185,16 +191,16 @@
       <div class="modal-actions">
         <button class="cancel-btn" on:click={onClose}>Cancel</button>
         {#if activeTab === 'select'}
-          <button 
-            class="primary-btn" 
+          <button
+            class="primary-btn"
             disabled={!selectedServerId || isProcessing}
             on:click={handleAddFromSelection}
           >
             {isProcessing ? 'Adding...' : 'Add Bot'}
           </button>
         {:else}
-          <button 
-            class="primary-btn" 
+          <button
+            class="primary-btn"
             disabled={!inviteLink.trim() || isProcessing}
             on:click={handleAddFromInvite}
           >
@@ -222,8 +228,12 @@
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .modal-content {
@@ -240,11 +250,11 @@
   }
 
   @keyframes slideIn {
-    from { 
+    from {
       opacity: 0;
       transform: translateY(-20px) scale(0.95);
     }
-    to { 
+    to {
       opacity: 1;
       transform: translateY(0) scale(1);
     }
@@ -447,7 +457,8 @@
     margin-top: auto;
   }
 
-  .cancel-btn, .primary-btn {
+  .cancel-btn,
+  .primary-btn {
     padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 0.5rem;

@@ -1,32 +1,31 @@
 <script lang="ts">
-import { serverStore } from '$lib';
-import { goto } from '$app/navigation';
-import AddServerModal from '$lib/AddServerModal.svelte';
+  import { serverStore } from '$lib';
+  import { goto } from '$app/navigation';
+  import AddServerModal from '$lib/AddServerModal.svelte';
 
-const { activeServerId }: { activeServerId: string } = $props();
+  const { activeServerId }: { activeServerId: string } = $props();
 
-const servers = serverStore;
-let showAddServerModal = $state(false);
+  const servers = serverStore;
+  let showAddServerModal = $state(false);
 
-// Filter to only show servers where bot is active
-const activeServers = $derived($servers.filter(server => server.isBotInGuild));
+  // Filter to only show servers where bot is active
+  const activeServers = $derived($servers.filter((server) => server.isBotInGuild));
 
-function handleServerClick(id: string) {
-  console.log('Server clicked:', id, 'Active:', activeServerId);
-  if (id !== activeServerId) {
-    console.log('Navigating to:', `/dashboard/${id}`);
-    goto(`/dashboard/${id}`);
+  function handleServerClick(id: string) {
+    console.log('Server clicked:', id, 'Active:', activeServerId);
+    if (id !== activeServerId) {
+      console.log('Navigating to:', `/dashboard/${id}`);
+      goto(`/dashboard/${id}`);
+    }
   }
-}
 
-function handleAddServerClick() {
-  showAddServerModal = true;
-}
+  function handleAddServerClick() {
+    showAddServerModal = true;
+  }
 
-function closeAddServerModal() {
-  showAddServerModal = false;
-}
-
+  function closeAddServerModal() {
+    showAddServerModal = false;
+  }
 </script>
 
 <aside class="server-sidebar">
@@ -53,9 +52,9 @@ function closeAddServerModal() {
         >
           <div class="server-icon-container">
             {#if server.iconUrl}
-              <img 
-                src={server.iconUrl.replaceAll('.gif', '.png')} 
-                alt="{server.name} icon" 
+              <img
+                src={server.iconUrl.replaceAll('.gif', '.png')}
+                alt="{server.name} icon"
                 class="server-icon"
               />
             {:else}
@@ -68,11 +67,13 @@ function closeAddServerModal() {
           </div>
         </button>
       {/each}
-      
+
       <button class="add-server-btn" on:click={handleAddServerClick}>
         <div class="add-server-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"/>
+            <path
+              d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+            />
           </svg>
         </div>
         <span>Add Server</span>
@@ -81,10 +82,7 @@ function closeAddServerModal() {
   </div>
 </aside>
 
-<AddServerModal 
-  isOpen={showAddServerModal} 
-  onClose={closeAddServerModal} 
-/>
+<AddServerModal isOpen={showAddServerModal} onClose={closeAddServerModal} />
 
 <style>
   .server-sidebar {
@@ -293,14 +291,13 @@ function closeAddServerModal() {
   }
 
   @keyframes shimmer {
-    0% { 
-      transform: translateX(-100%); 
+    0% {
+      transform: translateX(-100%);
     }
-    100% { 
-      transform: translateX(100%); 
+    100% {
+      transform: translateX(100%);
     }
   }
-
 
   /* Scrollbar styling */
   .server-list::-webkit-scrollbar {

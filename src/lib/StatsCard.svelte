@@ -1,18 +1,18 @@
 <script lang="ts">
-  const { 
-    title, 
-    value, 
-    subtitle = '', 
-    icon = '', 
-    trend = 'neutral', 
-    trendValue = '' 
-  }: { 
-    title: string; 
-    value: string | number; 
-    subtitle?: string; 
-    icon?: string; 
-    trend?: 'up' | 'down' | 'neutral'; 
-    trendValue?: string; 
+  const {
+    title,
+    value,
+    subtitle = '',
+    icon = '',
+    trend = 'neutral',
+    trendValue = ''
+  }: {
+    title: string;
+    value: string | number;
+    subtitle?: string;
+    icon?: string;
+    trend?: 'up' | 'down' | 'neutral';
+    trendValue?: string;
   } = $props();
 </script>
 
@@ -25,24 +25,38 @@
       </div>
     {/if}
   </div>
-  
+
   <div class="stats-value">
     {typeof value === 'number' ? value.toLocaleString() : value}
   </div>
-  
+
   {#if subtitle}
     <div class="stats-subtitle">{subtitle}</div>
   {/if}
-  
+
   {#if trendValue}
     <div class="stats-trend {trend}">
       {#if trend === 'up'}
         <svg width="12" height="12" viewBox="0 0 12 12">
-          <path d="M2 8l4-4 4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M2 8l4-4 4 4"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       {:else if trend === 'down'}
         <svg width="12" height="12" viewBox="0 0 12 12">
-          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M2 4l4 4 4-4"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       {/if}
       {trendValue}
@@ -56,7 +70,9 @@
     border-radius: 1rem;
     padding: 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .stats-card:hover {

@@ -3,7 +3,7 @@
     <div class="skeleton-title shimmer"></div>
     <div class="skeleton-icon shimmer"></div>
   </div>
-  
+
   <div class="skeleton-value shimmer"></div>
   <div class="skeleton-subtitle shimmer"></div>
   <div class="skeleton-trend shimmer"></div>
@@ -78,11 +78,11 @@
   }
 
   @keyframes shimmer {
-    0% { 
-      transform: translateX(-100%); 
+    0% {
+      transform: translateX(-100%);
     }
-    100% { 
-      transform: translateX(100%); 
+    100% {
+      transform: translateX(100%);
     }
   }
 </style>

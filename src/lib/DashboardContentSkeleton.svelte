@@ -11,7 +11,7 @@
         <div class="skeleton-stat shimmer"></div>
       </div>
     </div>
-    
+
     <!-- Top Commands Skeleton -->
     <div class="content-card-skeleton">
       <div class="skeleton-header">
@@ -30,7 +30,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Activity Feed Skeleton -->
   <div class="activity-skeleton">
     <div class="content-card-skeleton">
@@ -206,11 +206,11 @@
   }
 
   @keyframes shimmer {
-    0% { 
-      transform: translateX(-100%); 
+    0% {
+      transform: translateX(-100%);
     }
-    100% { 
-      transform: translateX(100%); 
+    100% {
+      transform: translateX(100%);
     }
   }
 
@@ -219,7 +219,7 @@
     .dashboard-content-skeleton {
       grid-template-columns: 1fr;
     }
-    
+
     .activity-skeleton {
       order: -1;
     }

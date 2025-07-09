@@ -9,13 +9,13 @@
 
   let serverId: string = $state(page.params.serverId);
   let server: Server | null = $state(null);
-  
+
   $effect(() => {
     serverId = page.params.serverId;
   });
-  
+
   $effect(() => {
-    server = $serverStore.find(s => s.id === serverId) || null;
+    server = $serverStore.find((s) => s.id === serverId) || null;
   });
 
   // Fetch servers if not loaded
@@ -35,7 +35,11 @@
   {#if server}
     <div class="server-dashboard-card {server.isBotInGuild ? 'online' : 'offline'}">
       {#if server.iconUrl}
-        <img class="server-icon" src={server.iconUrl.replaceAll('.gif', '.png')} alt="{server.name} icon" />
+        <img
+          class="server-icon"
+          src={server.iconUrl.replaceAll('.gif', '.png')}
+          alt="{server.name} icon"
+        />
       {:else}
         <div class="server-icon placeholder">{server.name.charAt(0)}</div>
       {/if}
@@ -67,7 +71,7 @@
     background: var(--color-surface, #23272f);
     color: var(--color-on-surface, #f5f6fa);
     border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     padding: 2rem 2.5rem;
     min-width: 320px;
     max-width: 420px;
@@ -110,7 +114,8 @@
     color: inherit;
     text-align: left;
   }
-  .server-id, .server-members {
+  .server-id,
+  .server-members {
     color: #b5bac1;
     margin: 0.1rem 0;
     font-size: 1.05rem;
@@ -126,7 +131,9 @@
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+    transition:
+      background 0.2s,
+      transform 0.1s;
   }
   button:hover {
     background: #4752c4;
@@ -139,4 +146,3 @@
     font-weight: 500;
   }
 </style>
-

@@ -11,7 +11,12 @@
 <div class="add-bot-page">
   <h1>Add Bot to Server</h1>
   <p>To add the bot to your server, click the button below:</p>
-  <a class="add-bot-btn" href={`https://discord.com/oauth2/authorize?client_id=YOUR_BOT_CLIENT_ID&scope=bot&permissions=8&guild_id=${serverId}`} target="_blank" rel="noopener noreferrer">Add Bot to Server</a>
+  <a
+    class="add-bot-btn"
+    href={`https://discord.com/oauth2/authorize?client_id=YOUR_BOT_CLIENT_ID&scope=bot&permissions=8&guild_id=${serverId}`}
+    target="_blank"
+    rel="noopener noreferrer">Add Bot to Server</a
+  >
 </div>
 
 <style>
@@ -22,7 +27,7 @@
     background: var(--color-surface, #23272f);
     border-radius: 1rem;
     color: var(--color-on-surface, #f5f6fa);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     text-align: center;
   }
   .add-bot-btn {
@@ -41,4 +46,3 @@
     background: #c0392b;
   }
 </style>
-

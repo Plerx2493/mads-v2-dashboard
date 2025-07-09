@@ -25,7 +25,7 @@
     max-width: 400px;
     text-align: center;
     font-size: 1.08rem;
-    box-shadow: 0 2px 16px rgba(44,62,80,0.10);
+    box-shadow: 0 2px 16px rgba(44, 62, 80, 0.1);
     border: 1.5px solid #c0392b33;
   }
   .icon {
@@ -48,8 +48,10 @@
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    transition: background 0.15s, box-shadow 0.15s;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    transition:
+      background 0.15s,
+      box-shadow 0.15s;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
     border: none;
     outline: none;
     cursor: pointer;
@@ -57,6 +59,6 @@
   }
   .back-btn:hover {
     background: #a93226;
-    box-shadow: 0 2px 8px rgba(192,57,43,0.10);
+    box-shadow: 0 2px 8px rgba(192, 57, 43, 0.1);
   }
 </style>

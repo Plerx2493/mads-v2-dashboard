@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { ActivityItem } from '../types/dashboard';
-  
+
   const { activities }: { activities: ActivityItem[] } = $props();
-  
+
   function getActivityIcon(type: ActivityItem['type']): string {
     switch (type) {
       case 'server_join':
@@ -29,7 +29,7 @@
         </svg>`;
     }
   }
-  
+
   function getActivityColor(type: ActivityItem['type']): string {
     switch (type) {
       case 'server_join':
@@ -50,7 +50,7 @@
   <div class="activity-header">
     <h3>Recent Activity</h3>
   </div>
-  
+
   <div class="activity-list">
     {#each activities as activity (activity.id)}
       <div class="activity-item">
