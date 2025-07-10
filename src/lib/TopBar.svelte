@@ -48,7 +48,7 @@
 <header class="topbar">
   <div class="topbar-content">
     <div class="nav-section">
-      <button class="dashboard-btn" on:click={handleDashboard}>
+      <button class="dashboard-btn" onclick={handleDashboard}>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
           <path
             d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
@@ -59,7 +59,7 @@
     </div>
 
     <div class="user-section" bind:this={dropdownElement}>
-      <button class="user-button" on:click={toggleDropdown}>
+      <button class="user-button" onclick={toggleDropdown}>
         {#if $userStore?.avatarUrl}
           <img src={$userStore.avatarUrl} alt="User avatar" class="user-avatar" />
         {:else}
@@ -87,7 +87,7 @@
 
       {#if dropdownOpen}
         <div class="dropdown-menu">
-          <button class="dropdown-item" on:click={handleProfile}>
+          <button class="dropdown-item" onclick={handleProfile}>
             <svg width="16" height="16" viewBox="0 0 16 16">
               <path
                 d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 9a5 5 0 0 0-5 5h10a5 5 0 0 0-5-5z"
@@ -96,7 +96,7 @@
             </svg>
             Profile
           </button>
-          <button class="dropdown-item" on:click={handleSettings}>
+          <button class="dropdown-item" onclick={handleSettings}>
             <svg width="16" height="16" viewBox="0 0 16 16">
               <path
                 d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
@@ -110,7 +110,7 @@
             Settings
           </button>
           <div class="dropdown-divider"></div>
-          <button class="dropdown-item danger" on:click={handleLogout}>
+          <button class="dropdown-item danger" onclick={handleLogout}>
             <svg width="16" height="16" viewBox="0 0 16 16">
               <path
                 d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"

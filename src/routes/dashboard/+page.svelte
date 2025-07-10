@@ -13,7 +13,7 @@
   import ActivityFeed from '$lib/ActivityFeed.svelte';
   import DashboardContentSkeleton from '$lib/DashboardContentSkeleton.svelte';
   import ErrorMessage from '$lib/ErrorMessage.svelte';
-  import type { DashboardStats } from '../types/dashboard';
+  import type { DashboardStats } from '../../types/dashboard';
 
   let isLoadingUser = $state(true);
   let isLoadingServers = $state(true);
@@ -324,8 +324,7 @@
   }
 
   @media (max-width: 768px) {
-    .stats-grid,
-    .stats-skeleton {
+    .stats-grid {
       grid-template-columns: 1fr;
     }
 
@@ -386,10 +385,4 @@
     }
   }
 
-  p {
-    color: var(--color-on-surface, #f5f6fa);
-    font-size: 1.1rem;
-    text-align: center;
-    margin-top: 3rem;
-  }
 </style>

@@ -48,7 +48,7 @@
       {#each activeServers as server (server.id)}
         <button
           class="server-item {server.id === activeServerId ? 'active' : ''}"
-          on:click={() => handleServerClick(server.id)}
+          onclick={() => handleServerClick(server.id)}
         >
           <div class="server-icon-container">
             {#if server.iconUrl}
@@ -68,7 +68,7 @@
         </button>
       {/each}
 
-      <button class="add-server-btn" on:click={handleAddServerClick}>
+      <button class="add-server-btn" onclick={handleAddServerClick}>
         <div class="add-server-icon">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -199,9 +199,6 @@
     color: #27ae60;
   }
 
-  .server-status.offline {
-    color: #3498db;
-  }
 
   .add-server-btn {
     display: flex;

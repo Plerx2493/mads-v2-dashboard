@@ -86,16 +86,17 @@
   <!-- Modal backdrop -->
   <div
     class="modal-backdrop"
-    on:click={handleBackdropClick}
-    on:keydown={handleKeydown}
+    onclick={handleBackdropClick}
+    onkeydown={handleKeydown}
     role="dialog"
     aria-modal="true"
     aria-labelledby="modal-title"
+    tabindex="-1"
   >
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="modal-title">Add Server</h2>
-        <button class="close-btn" on:click={onClose} aria-label="Close modal">
+        <button class="close-btn" onclick={onClose} aria-label="Close modal">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
@@ -107,13 +108,13 @@
       <div class="modal-tabs">
         <button
           class="tab-btn {activeTab === 'select' ? 'active' : ''}"
-          on:click={() => handleTabChange('select')}
+          onclick={() => handleTabChange('select')}
         >
           Select Server
         </button>
         <button
           class="tab-btn {activeTab === 'invite' ? 'active' : ''}"
-          on:click={() => handleTabChange('invite')}
+          onclick={() => handleTabChange('invite')}
         >
           Invite Link
         </button>
@@ -129,7 +130,7 @@
                 {#each availableServers as server (server.id)}
                   <button
                     class="selectable-server {selectedServerId === server.id ? 'selected' : ''}"
-                    on:click={() => handleSelectServer(server.id)}
+                    onclick={() => handleSelectServer(server.id)}
                   >
                     <div class="server-icon-container">
                       {#if server.iconUrl}
@@ -189,12 +190,12 @@
 
       <!-- Sticky action buttons -->
       <div class="modal-actions">
-        <button class="cancel-btn" on:click={onClose}>Cancel</button>
+        <button class="cancel-btn" onclick={onClose}>Cancel</button>
         {#if activeTab === 'select'}
           <button
             class="primary-btn"
             disabled={!selectedServerId || isProcessing}
-            on:click={handleAddFromSelection}
+            onclick={handleAddFromSelection}
           >
             {isProcessing ? 'Adding...' : 'Add Bot'}
           </button>
@@ -202,7 +203,7 @@
           <button
             class="primary-btn"
             disabled={!inviteLink.trim() || isProcessing}
-            on:click={handleAddFromInvite}
+            onclick={handleAddFromInvite}
           >
             {isProcessing ? 'Processing...' : 'Add Bot'}
           </button>
