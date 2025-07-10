@@ -22,3 +22,5 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 .dev.vars*
+CLAUDE.md
+.claude/settings.local.json
