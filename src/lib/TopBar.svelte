@@ -1,10 +1,14 @@
 <script lang="ts">
   import { userStore } from '$lib';
   import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
   import { onMount } from 'svelte';
 
   let dropdownOpen = $state(false);
   let dropdownElement: HTMLDivElement;
+  
+  // Check if we're in a server-specific dashboard
+  const isInServerDashboard = $derived($page.url.pathname.startsWith('/dashboard/') && $page.url.pathname !== '/dashboard');
 
   function toggleDropdown() {
     dropdownOpen = !dropdownOpen;
@@ -30,6 +34,10 @@
     goto('/dashboard');
   }
 
+  function handleBackToOverview() {
+    goto('/dashboard');
+  }
+
   // Close dropdown when clicking outside
   onMount(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -48,14 +56,23 @@
 <header class="topbar">
   <div class="topbar-content">
     <div class="nav-section">
-      <button class="dashboard-btn" onclick={handleDashboard}>
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-          <path
-            d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
-          />
-        </svg>
-        Dashboard
-      </button>
+      {#if isInServerDashboard}
+        <button class="back-to-overview-btn" onclick={handleBackToOverview}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+          </svg>
+          Back to Overview
+        </button>
+      {:else}
+        <button class="dashboard-btn" onclick={handleDashboard}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+            />
+          </svg>
+          Dashboard
+        </button>
+      {/if}
     </div>
 
     <div class="user-section" bind:this={dropdownElement}>
@@ -177,6 +194,32 @@
   }
 
   .dashboard-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .back-to-overview-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--color-primary, #5865f2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(88, 101, 242, 0.3);
+  }
+
+  .back-to-overview-btn:hover {
+    background: rgba(88, 101, 242, 0.2);
+    border-color: rgba(88, 101, 242, 0.5);
+  }
+
+  .back-to-overview-btn svg {
     width: 20px;
     height: 20px;
   }

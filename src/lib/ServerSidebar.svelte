@@ -199,7 +199,6 @@
     color: #27ae60;
   }
 
-
   .add-server-btn {
     display: flex;
     align-items: center;
